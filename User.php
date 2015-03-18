@@ -1,4 +1,7 @@
 <?php
+	/**
+	 * Clas containing information about users.
+	 */
 	class User {
 		private $id;
 		private $login;

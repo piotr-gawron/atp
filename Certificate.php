@@ -1,4 +1,8 @@
 <?php
+	/**
+	 * Class containing information about certificate.
+	 *
+	 */
 	class Certificate{
 		private $id;
 		private $certificateNumber;

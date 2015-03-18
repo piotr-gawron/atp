@@ -1,4 +1,7 @@
 <?php
+	/**
+	 * Class containing information about update evenst (when the db was updated).
+	 */
 	class UpdateEvent{
 		private $id;
 		private $date;
