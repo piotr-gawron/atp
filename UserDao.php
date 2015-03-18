@@ -9,7 +9,6 @@
 			$query.= " AND password = '".$cryptedPassword."'";
 			$dbRes=mysql_query($query);
 			$result = array();
-			echo $query;
 			while ($row=mysql_fetch_array($dbRes)) {
 				return new User($row);
 			}
