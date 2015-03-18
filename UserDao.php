@@ -1,6 +1,6 @@
 <?php
 	class UserDao {
-		private $table = 'user_table';
+		private $table = 'atp_user_table';
 
 		public function getUserByLoginPassword($login, $password) {
 			$escapedLogin = mysql_real_escape_string ($login);
@@ -9,6 +9,7 @@
 			$query.= " AND password = '".$cryptedPassword."'";
 			$dbRes=mysql_query($query);
 			$result = array();
+			echo $query;
 			while ($row=mysql_fetch_array($dbRes)) {
 				return new User($row);
 			}

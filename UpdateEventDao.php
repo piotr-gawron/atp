@@ -1,6 +1,6 @@
 <?php
 	class UpdateEventDao {
-		private $table = "update_event";
+		private $table = "atp_update_event";
 		public function getAll() {
 			$query = "SELECT * FROM ".$this->table." ORDER BY id";
 			$dbRes=mysql_query($query);

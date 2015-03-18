@@ -1,6 +1,6 @@
 <?php
 	class CertificateDao {
-		private $table = "certificate";
+		private $table = "atp_certificate";
 		public function getCertificatesByQuery($str) {
 			$escaped = mysql_real_escape_string ($str);
 			$query = "SELECT * FROM ".$this->table." WHERE building_number = '".$escaped."'";
