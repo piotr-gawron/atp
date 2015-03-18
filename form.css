@@ -1,5 +1,8 @@
 .queryForm {
-		display:inline;
-		float:right;
-    width:300px;
+	display:inline;
+	float:right;
+	width:300px;
+}
+.errors {
+	background: #FFAAAA;
 }

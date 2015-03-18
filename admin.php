@@ -154,7 +154,7 @@
 			echo "Plik zaladowany pomyslnie.";
 		} else {
 			echo "Wystapily bledy podczas ladowania pliku:<br/>";
-			echo $errors;
+			echo "<div class=\"errors\"".$errors."</div>";
 		}
 		echo "<br/><br/>";
 	}
