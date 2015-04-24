@@ -31,6 +31,11 @@
 				$_SESSION['user'] = $user;
 				return true;
 			} else {
+				echo "<center><h3>Nieprawidlowy login lub haslo!</h3></center>";
+				$logEvent = new LogEvent();
+				$logEvent->setDate(date("Y-m-d H:i:s"));
+				$logEvent->setNotes('Unsuccessfull login: '.$_POST['login']);
+				$dbConnection->logEventDao->add($logEvent);
 				return false;
 			}
 		} else {

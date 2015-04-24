@@ -7,6 +7,7 @@
 		public $certificateDao;
 		public $userDao;
 		public $updateEventDao;
+		public $logEventDao;
 
 		public function __construct($config) {
 			$this->user = $config->getUser();
@@ -20,6 +21,7 @@
 			$this->certificateDao = new CertificateDao();
 			$this->userDao = new UserDao();
 			$this->updateEventDao = new UpdateEventDao();
+			$this->logEventDao = new LogEventDao();
 		}
 		function closeDbConnection() {
 			mysql_close();

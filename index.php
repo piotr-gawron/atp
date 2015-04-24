@@ -6,6 +6,7 @@
 
 	function printHeader() {
 		global $config;
+		global $dbConnection;
 		echo "<html>\n";
 		echo "<head>\n";
 		echo "<title>".$config->getTitle()."</title>";
@@ -17,6 +18,12 @@
 		echo "<center><h2>".$config->getTitle()."</h2></center>\n";
 	}
 	function printFooter() {
+		global $dbConnection;
+		$lastUpdate =  $dbConnection->updateEventDao->getLast();
+		$date = '';
+		if ($lastUpdate!=null) {
+			echo '<div style="position: absolute; bottom: 5px; left: 0px; right: 0px; float:right; background-color:#AAAAAA; padding-right: 10px; "><p align="right">wersja bazy: '.$lastUpdate->getDate().' </p> </div>';
+		}
 		echo "</body>\n";
 	}
 
@@ -50,7 +57,7 @@
 		echo "<span class=\"cell\">Numer certyfikatu</span>\n";
 		echo "<span class=\"cell\">Numer zabudowy</span>\n";
 		echo "<span class=\"cell\">Numer podwozia</span>\n";
-		echo "<span class=\"cell\">Symbol calosci</span>\n";
+		echo "<span class=\"cell\">Klasa ATP</span>\n";
 		echo "<span class=\"cell\">Data waznosci</span>\n";
 		echo "</div>\n";
 
@@ -69,6 +76,11 @@
 			echo "</div>\n";
 		}
 		echo "</div>\n";
+		if ($counter<=0) {
+			echo '<div style="background-color:white; padding-top: 10px; padding-bottom: 10px;">';
+			echo "<center><b>Nie znaleziono wynikow dla zapytania: ".$query."</b></center>";
+			echo "</div>\n";
+		}
 	}
 
 	$dbConnection->openDbConnection();

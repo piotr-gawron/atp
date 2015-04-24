@@ -10,6 +10,14 @@
 			}
 			return $result;
 		}
+		public function getLast() {
+			$query = "SELECT * FROM ".$this->table." ORDER BY id desc limit 1";
+			$dbRes=mysql_query($query);
+			while ($row=mysql_fetch_array($dbRes)) {
+				return new UpdateEvent($row);
+			}
+			return null;
+		}
 		public function add($certificate) {
 			$query = "INSERT INTO ".$this->table." (date) values (";
 			$query .= $this->prepareDate($certificate->getDate())." ";

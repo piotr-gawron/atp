@@ -10,4 +10,7 @@ insert into atp_user_table (login, password) values ('atp_user','d4d44849b81fd3a
 -- information abaout updates
 CREATE TABLE atp_update_event (id int(6) NOT NULL auto_increment,  date datetime not null, PRIMARY KEY (id),UNIQUE id (id));
 
+-- logs
+create table atp_log_event (id int(6) not null auto_increment, date datetime not null, notes varchar(1024), primary key(id), unique id (id));
+
 

@@ -3,6 +3,8 @@
 	include_once "CertificateDao.php";
 	include_once "DbConnection.php";
 	include_once "InvalidDateFormatException.php";
+	include_once "LogEvent.php";
+	include_once "LogEventDao.php";
 	include_once "UpdateEvent.php";
 	include_once "UpdateEventDao.php";
 	include_once "User.php";
