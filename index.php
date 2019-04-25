@@ -43,7 +43,7 @@
 
 	function printQueryResult($query) {
 		global $dbConnection;
-		
+
 		$result = $dbConnection->certificateDao->getCertificatesByQuery($query);
 
 		$counter = count($result);
@@ -88,7 +88,7 @@
 	$query = "";
 	if (isset($_POST["query"])) {
 		$query = $_POST["query"];
-		$query = mysql_real_escape_string ($query);
+		$query = mysqli_real_escape_string ($dbConnection->link, $query);
 	}
 
 	printQueryResult($query);

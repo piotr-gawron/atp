@@ -15,16 +15,15 @@
 			$this->database = $config->getDatabase();
 		}
 		function openDbConnection(){
-			mysql_connect('localhost', $this->user, $this->password);
-			@mysql_select_db($this->database) or die("Problem z polaczeniem z baza danych.");
+			$this->link = mysqli_connect('localhost', $this->user, $this->password, $this->database) or die("Problem z polaczeniem z baza danych.");
 
-			$this->certificateDao = new CertificateDao();
-			$this->userDao = new UserDao();
-			$this->updateEventDao = new UpdateEventDao();
-			$this->logEventDao = new LogEventDao();
+			$this->certificateDao = new CertificateDao($this->link);
+			$this->userDao = new UserDao($this->link);
+			$this->updateEventDao = new UpdateEventDao($this->link);
+			$this->logEventDao = new LogEventDao($this->link);
 		}
 		function closeDbConnection() {
-			mysql_close();
+			mysqli_close($this->link);
 		}
 	}
 ?>

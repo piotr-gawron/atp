@@ -1,17 +1,22 @@
 <?php
 	class CertificateDao {
 		private $table = "atp_certificate";
+
+		public function __construct($link) {
+			$this->link = $link;
+		}
+
 		public function getCertificatesByQuery($str) {
-			$escaped = mysql_real_escape_string ($str);
+			$escaped = mysqli_real_escape_string ($this->link, $str);
 			$query = "SELECT * FROM ".$this->table." WHERE building_number = '".$escaped."'";
 			$query.= " OR vin = '".$escaped."'";
 			if (strlen($str)>=6) {
 				$query.= " OR building_number like '%".$escaped."'";
 				$query.= " OR vin like '%".$escaped."'";
 			}
-			$dbRes=mysql_query($query);
+			$dbRes=mysqli_query($this->link, $query);
 			$result = array();
-			while ($row=mysql_fetch_array($dbRes)) {
+			while ($row=mysqli_fetch_array($dbRes)) {
 				$result []= new Certificate($row);
 			}
 			return $result;
@@ -23,12 +28,12 @@
 			$query .= $this->prepareStr($certificate->getVin()).", ";
 			$query .= $this->prepareDate($certificate->getExpireDate()).", ";
 			$query .= $this->prepareStr($certificate->getSymbol()).");" ;
-			mysql_query($query);
+			mysqli_query($this->link, $query);
 		}
 
 		public function clear() {
 			$query="DELETE FROM ".$this->table.";";
-			mysql_query($query);
+			mysqli_query($this->link, $query);
 		}
 
 		protected function prepareDate($str) {
@@ -36,7 +41,7 @@
 				return "null";
 			} else {
 				$str = str_replace('-', '/', $str);
-				
+
 				$cols = preg_split('/\//',$str);
 				if (count($cols)!=2) {
 					throw new InvalidDateFormatException("Niepoprawna data: \"".$str."\"");
@@ -60,7 +65,7 @@
 			if ($str ==null) {
 				return "null";
 			} else {
-				return " '".mysql_real_escape_string($str)."' ";
+				return " '".mysqli_real_escape_string($this->link, $str)."' ";
 			}
 		}
 	}

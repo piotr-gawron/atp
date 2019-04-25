@@ -3,8 +3,6 @@ CREATE TABLE atp_certificate (id int(6) NOT NULL auto_increment, certificate_num
 -- user db
 CREATE TABLE atp_user_table (id int(6) NOT NULL auto_increment, login varchar(255) NOT NULL, password varchar(255), PRIMARY KEY (id),UNIQUE id (id));
 -- insert user with credentials:
---  login:    atp_user
---  password: 4btfnC4C
 insert into atp_user_table (login, password) values ('atp_user','d4d44849b81fd3afa57402bb24c2a411');
 
 -- information abaout updates
@@ -12,5 +10,3 @@ CREATE TABLE atp_update_event (id int(6) NOT NULL auto_increment,  date datetime
 
 -- logs
 create table atp_log_event (id int(6) not null auto_increment, date datetime not null, notes varchar(1024), primary key(id), unique id (id));
-
-
